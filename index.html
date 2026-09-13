@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IC Daily Price List</title>
+<link rel="stylesheet" href="style.css">
+<script>
+(function () {
+  var theme = "light";
+  try {
+    if (localStorage.getItem("theme") === "dark") theme = "dark";
+  } catch (e) {}
+  document.documentElement.setAttribute("data-theme", theme);
+})();
+</script>
+</head>
+<body>
+  <div class="wrap">
+    <header class="page-head">
+      <div class="head-text">
+        <h1>💾 EMMC Price Lists</h1>
+        <p class="sub" id="subLabel">Live price board</p>
+      </div>
+      <div class="controls">
+        <input id="search" type="text" placeholder="Search item…">
+        <button id="themeBtn" class="btn" type="button" aria-label="Toggle light/dark theme">🌙</button>
+        <button id="refreshBtn" class="btn" type="button">🔄 Refresh</button>
+      </div>
+    </header>
+
+    <div class="region-rail" id="regionRail"></div>
+
+    <div class="notice" id="noticeBox" hidden></div>
+
+    <div class="status-line">
+      <span class="dot" id="dot"></span>
+      <span id="statusText">Connecting…</span>
+    </div>
+
+    <div class="error-box" id="errorBox">Couldn't reach the price feed — showing the last data received.</div>
+
+    <div class="card">
+      <table>
+        <thead><tr><th>Item</th><th class="right">Price</th></tr></thead>
+        <tbody id="priceBody">
+          <tr><td colspan="2" class="empty">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
